@@ -1,0 +1,26 @@
+{
+  "name": "phonewords",
+  "version": "1.0.0",
+  "description": "Two-way number-letter conversion according to ITU-T E.161.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itsnickbarry/phonewords.git"
+  },
+  "keywords": [
+    "phone",
+    "words",
+    "numbers",
+    "letters",
+    "wow"
+  ],
+  "author": "Nick Barry",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/itsnickbarry/phonewords/issues"
+  },
+  "homepage": "https://github.com/itsnickbarry/phonewords#readme"
+}
