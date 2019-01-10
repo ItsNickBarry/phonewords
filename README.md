@@ -16,24 +16,24 @@ Require the module and call one of its functions, depending on the desired direc
 let phonewords = require('phonewords');
 ```
 
-### Number to Words
+### Numbers to Words
 
 Convert a number to an array of possible character combinations:
 
 ```javascript
-phonewords.numberToWords(2);
+phonewords.numbersToWords(2);
 // => [ 'A', 'B', 'C' ]
 
-phonewords.numberToWords('2');
+phonewords.numbersToWords('2');
 // => [ 'A', 'B', 'C' ]
 
-phonewords.numberToWords(22);
+phonewords.numbersToWords(22);
 // => [ 'AA', 'AB', 'AC', 'BA', 'BB', 'BC', 'CA', 'CB', 'CC' ]
 
-phonewords.numberToWords(210);
+phonewords.numbersToWords(210);
 // => [ 'A__', 'B__', 'C__' ]
 
-phonewords.numberToWords('+1 (201) ...');
+phonewords.numbersToWords('+1 (201) ...');
 // => [ '_A__', '_B__', '_C__' ]
 ```
 
@@ -42,24 +42,24 @@ Because `0` and `1` do no correspond to any characters, they are replaced with u
 Note that this function has a quadratic time complexity with respect to the number of input digits and should not be used for especially long numbers.
 
 
-### Words to Number
+### Words to Numbers
 
 Convert a string to a number:
 
 ```javascript
-phonewords.wordsToNumber('phonewords');
+phonewords.wordstoNumbers('phonewords');
 // => '7466396737'
 
-phonewords.wordsToNumber('pHoNewoRDs');
+phonewords.wordstoNumbers('pHoNewoRDs');
 // => '7466396737'
 
-phonewords.wordsToNumber('P H O N E W O R D S');
+phonewords.wordstoNumbers('P H O N E W O R D S');
 // => '7466396737'
 
-phonewords.wordsToNumber('ph0new0rd5');
+phonewords.wordstoNumbers('ph0new0rd5');
 // => '7406390735'
 
-phonewords.wordsToNumber('!@#$%^&*()');
+phonewords.wordstoNumbers('!@#$%^&*()');
 // => ''
 ```
 

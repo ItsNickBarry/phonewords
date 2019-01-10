@@ -1,4 +1,4 @@
-let letterToNumber = {
+let lettertoNumbers = {
   0: '0',
 
   1: '1',
@@ -46,7 +46,7 @@ let letterToNumber = {
   Z: '9',
 };
 
-let numberToLetter = {
+let numbersToLetter = {
   0: ['_'],
   1: ['_'],
   2: ['A', 'B', 'C'],
@@ -79,18 +79,18 @@ let characterPermutations = function (arrays, index) {
 };
 
 let phonewords = {
-  numberToWords: function (n) {
+  numbersToWords: function (n) {
     let digits = n.toString().replace(/\D/g, '').split('');
 
-    let characters = digits.map(d => numberToLetter[d]);
+    let characters = digits.map(d => numbersToLetter[d]);
 
     return characterPermutations(characters);
   },
 
-  wordsToNumber: function (s) {
+  wordstoNumbers: function (s) {
     let characters = s.toUpperCase().replace(/\W/g, '').split('');
 
-    return characters.map(c => letterToNumber[c]).join('');
+    return characters.map(c => lettertoNumbers[c]).join('');
   },
 }
 
