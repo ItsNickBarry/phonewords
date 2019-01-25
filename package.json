@@ -1,6 +1,6 @@
 {
   "name": "phonewords",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Two-way number-letter conversion according to ITU-T E.161.",
   "main": "index.js",
   "scripts": {

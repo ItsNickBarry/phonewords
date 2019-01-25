@@ -87,11 +87,11 @@ let phonewords = {
     return characterPermutations(characters);
   },
 
-  wordstoNumbers: function (s) {
+  wordsToNumbers: function (s) {
     let characters = s.toUpperCase().replace(/\W/g, '').split('');
 
     return characters.map(c => lettertoNumbers[c]).join('');
   },
-}
+};
 
 module.exports = phonewords;

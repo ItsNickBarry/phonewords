@@ -47,19 +47,19 @@ Note that this function has a quadratic time complexity with respect to the numb
 Convert a string to a number:
 
 ```javascript
-phonewords.wordstoNumbers('phonewords');
+phonewords.wordsToNumbers('phonewords');
 // => '7466396737'
 
-phonewords.wordstoNumbers('pHoNewoRDs');
+phonewords.wordsToNumbers('pHoNewoRDs');
 // => '7466396737'
 
-phonewords.wordstoNumbers('P H O N E W O R D S');
+phonewords.wordsToNumbers('P H O N E W O R D S');
 // => '7466396737'
 
-phonewords.wordstoNumbers('ph0new0rd5');
+phonewords.wordsToNumbers('ph0new0rd5');
 // => '7406390735'
 
-phonewords.wordstoNumbers('!@#$%^&*()');
+phonewords.wordsToNumbers('!@#$%^&*()');
 // => ''
 ```
 
