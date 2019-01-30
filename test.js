@@ -32,12 +32,6 @@ describe('numbersToWords', function () {
       assert.equal(phonewords.numbersToWords(number, true).length, length);
     });
 
-    it('returns an array of appropriate length', function () {
-      let number = '2'.repeat(20);
-      let length = Math.pow(3, 20);
-      assert.equal(phonewords.numbersToWords(number, true).length, length);
-    });
-
     describe('returns the same result at each index as when lazy is false', function () {
       let inputs = [111, 222, 333, 777, 987, 9228145]
 
