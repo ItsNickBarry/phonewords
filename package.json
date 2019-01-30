@@ -1,10 +1,10 @@
 {
   "name": "phonewords",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Two-way number-letter conversion according to ITU-T E.161.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,11 @@
   "bugs": {
     "url": "https://github.com/itsnickbarry/phonewords/issues"
   },
-  "homepage": "https://github.com/itsnickbarry/phonewords#readme"
+  "homepage": "https://github.com/itsnickbarry/phonewords#readme",
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  },
+  "dependencies": {
+    "is-array-index": "^1.0.0"
+  }
 }

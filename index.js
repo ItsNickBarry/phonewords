@@ -1,3 +1,5 @@
+let isArrayIndex = require('is-array-index');
+
 let lettertoNumbers = {
   0: '0',
 
@@ -79,12 +81,53 @@ let characterPermutations = function (arrays, index) {
 };
 
 let phonewords = {
-  numbersToWords: function (n) {
+  numbersToWords: function (n, lazy) {
     let digits = n.toString().replace(/\D/g, '').split('');
 
     let characters = digits.map(d => numbersToLetter[d]);
 
-    return characterPermutations(characters);
+    if (lazy) {
+      let length = characters.reduce((acc, el) => acc * el.length, 1);
+
+      let target = Array(length);
+
+      let handler = {
+        get: function (target, property) {
+          if (!(property in target) && isArrayIndex(property)) {
+            let result = '';
+
+            let index = property;
+            let lastBase = 10;
+
+            for (var i = characters.length - 1; i >= 0; i--) {
+              let charOptions = characters[i];
+
+              if (charOptions.length === 1) {
+                result = charOptions[0] + result;
+              } else {
+                let currentBase = charOptions.length;
+
+                if (currentBase !== lastBase) {
+                  index = parseInt(index, lastBase).toString(currentBase);
+                  lastBase = currentBase;
+                }
+
+                result = charOptions[index.slice(-1)] + result;
+                index = index.slice(0, -1) || '0';
+              }
+            }
+
+            target[property] = result;
+          }
+
+          return target[property];
+        },
+      };
+
+      return new Proxy(target, handler);
+    } else {
+      return characterPermutations(characters);
+    }
   },
 
   wordsToNumbers: function (s) {
