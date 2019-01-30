@@ -2,6 +2,8 @@ let assert = require('assert');
 
 let phonewords = require('./index.js');
 
+const MAX_ARRAY_LENGTH = Math.pow(2, 32) - 1;
+
 describe('numbersToWords', function () {
   describe('when lazy is false', function () {
     it('parses input number', function () {
@@ -26,10 +28,26 @@ describe('numbersToWords', function () {
   });
 
   describe('when lazy is true', function () {
-    it('returns an array of appropriate length for large input', function () {
+    it('returns an array with length close to maximum array length', function () {
       let number = '2'.repeat(20);
       let length = Math.pow(3, 20);
+      assert(length <= MAX_ARRAY_LENGTH);
       assert.equal(phonewords.numbersToWords(number, true).length, length);
+    });
+
+    it('returns an array with length greater than maximum array length', function () {
+      let number = '2'.repeat(21);
+      let length = Math.pow(3, 21);
+      assert(length > MAX_ARRAY_LENGTH);
+      assert.equal(phonewords.numbersToWords(number, true).length, length);
+    });
+
+    it('returns an array with safe integer length for a 33-digit input composed of 3-character digits', function () {
+      assert(phonewords.numbersToWords('2'.repeat(33), true).length < Number.MAX_SAFE_INTEGER);
+    });
+
+    it('returns an array with safe integer length for a 26-digit input composed of 4-character digits', function () {
+      assert(phonewords.numbersToWords('7'.repeat(26), true).length < Number.MAX_SAFE_INTEGER);
     });
 
     describe('returns the same result at each index as when lazy is false', function () {

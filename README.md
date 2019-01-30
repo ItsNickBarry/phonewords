@@ -62,10 +62,15 @@ phonewords.numbersToWords('+1 (201) ...');
 
 Because `0` and `1` do no correspond to any characters, they are replaced with underscores.
 
-By default, this function has a quadratic time complexity with respect to the number of input digits, and may run out of memory when passed especially long numbers.  To avoid these issues, particularly when the output is streamed or paginated, set the second argument, `lazy`, to `true`.  This will cause the function to return an array `Proxy` that will only calculate each result when its index is explicitly accessed.  Some `Array` functions will break the functionality of the `Proxy`; therefore, only direct indexing and the use of the `length` property are supported.  The maximum input length is constrained such that the number of results must not exceed the maximum length of an array, `Math.pow(2, 32) - 1`.
+#### Lazy Loading
+
+By default, this function has a quadratic time complexity with respect to the number of input digits, and may run out of memory when passed long numbers.
+
+To avoid these issues, particularly when the output is streamed or paginated, set the second argument, `lazy`, to `true`.  This will cause the function to return an array `Proxy` that will only calculate each result when its index is explicitly accessed.  The `length` property is overridden to allow iterations over the object to exceed the normal `Array` length limit of `Math.pow(2, 32) - 1`.  Some `Array` functions will break the functionality of the `Proxy`; therefore, only direct indexing and the use of the `length` property are supported.
+
+The maximum input length is constrained such that the number of results must not exceed `Number.MAX_SAFE_INTEGER`.  For inputs composed entirely of 3-character digits, this length is `33`.  For inputs composed entirely of 4-character digits, this length is `26`.  Beyond these points, behavior is undefined.
 
 ```javascript
-
 let result = phonewords.numbersToWords('2'.repeat(20), true);
 
 result;
@@ -77,6 +82,15 @@ result[0];
 result;
 // => [ 'AAAAAAAAAAAAAAAAAAAA', <3486784400 empty items> ]
 
-phonewords.numbersToWords('2'.repeat(21), true);
-// => RangeError: Invalid array length
+phonewords.numbersToWords('2'.repeat(33), true);
+// => [ <5559060566555523 empty items> ]
+
+phonewords.numbersToWords('7'.repeat(26), true);
+// => [ <4503599627370496 empty items> ]
+
+phonewords.numbersToWords('2'.repeat(647), true);
+// => [ <Infinity empty items> ]
+
+phonewords.numbersToWords('7'.repeat(512), true);
+// => [ <Infinity empty items> ]
 ```

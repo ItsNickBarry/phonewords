@@ -89,11 +89,11 @@ let phonewords = {
     if (lazy) {
       let length = characters.reduce((acc, el) => acc * el.length, 1);
 
-      let target = Array(length);
+      let target = [];
 
       let handler = {
         get: function (target, property) {
-          if (!(property in target) && isArrayIndex(property)) {
+          if (!(property in target) && isArrayIndex(property, true) && property < length) {
             let result = '';
 
             let index = property;
@@ -118,6 +118,8 @@ let phonewords = {
             }
 
             target[property] = result;
+          } else if (property === 'length') {
+            return length;
           }
 
           return target[property];
