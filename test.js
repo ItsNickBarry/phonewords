@@ -5,7 +5,7 @@ let phonewords = require('./index.js');
 const MAX_ARRAY_LENGTH = Math.pow(2, 32) - 1;
 
 describe('numbersToWords', function () {
-  describe('when lazy is false', function () {
+  describe('by default', function () {
     it('parses input number', function () {
       assert.deepStrictEqual(phonewords.numbersToWords(2), ['A', 'B', 'C']);
     });
@@ -24,6 +24,14 @@ describe('numbersToWords', function () {
 
     it('parses input string with spaces and special characters', function () {
       assert.deepStrictEqual(phonewords.numbersToWords('+1 (201) ...'), ['_A__', '_B__', '_C__']);
+    });
+
+    it('throws error for a 21-digit input composed of 3-character digits', function () {
+      assert.throws(() => phonewords.numbersToWords('2'.repeat(21)));
+    });
+
+    it('throws error for a 16-digit input composed of 4-character digits', function () {
+      assert.throws(() => phonewords.numbersToWords('7'.repeat(16)));
     });
   });
 
@@ -50,8 +58,16 @@ describe('numbersToWords', function () {
       assert(phonewords.numbersToWords('7'.repeat(26), true).length < Number.MAX_SAFE_INTEGER);
     });
 
+    it('throws error for a 34-digit input composed of 3-character digits', function () {
+      assert.throws(() => phonewords.numbersToWords('2'.repeat(34), true));
+    });
+
+    it('throws error for a 27-digit input composed of 4-character digits', function () {
+      assert.throws(() => phonewords.numbersToWords('7'.repeat(27), true));
+    });
+
     describe('returns the same result at each index as when lazy is false', function () {
-      let inputs = [111, 222, 333, 777, 987, 9228145]
+      let inputs = [111, 222, 333, 777, 987, 9228145];
 
       inputs.forEach(function (input) {
         it(`for input ${ input }`, function () {

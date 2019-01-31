@@ -1,5 +1,7 @@
 let isArrayIndex = require('is-array-index');
 
+const MAX_ARRAY_LENGTH = Math.pow(2, 32) - 1;
+
 let lettertoNumbers = {
   0: '0',
 
@@ -86,9 +88,14 @@ let phonewords = {
 
     let characters = digits.map(d => numbersToLetter[d]);
 
-    if (lazy) {
-      let length = characters.reduce((acc, el) => acc * el.length, 1);
+    let length = characters.reduce((acc, el) => acc * el.length, 1);
 
+    if (length > (lazy ? Number.MAX_SAFE_INTEGER : MAX_ARRAY_LENGTH)) {
+      // throw standard Array error: 'RangeError: Invalid array length'
+      Array(length);
+    }
+
+    if (lazy) {
       let target = [];
 
       let handler = {
