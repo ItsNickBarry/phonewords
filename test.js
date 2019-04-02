@@ -109,4 +109,10 @@ describe('wordsToNumbers', function () {
   it('ignores special characters', function () {
     assert.equal(phonewords.wordsToNumbers('!@#$%^&*()'), '');
   });
+
+  it('is reversible', function () {
+    let words = 'ABC';
+    let numbers = phonewords.wordsToNumbers(words);
+    assert(phonewords.numbersToWords(numbers).includes(words));
+  });
 });
