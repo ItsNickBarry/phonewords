@@ -51,8 +51,8 @@ let lettertoNumbers = {
 };
 
 let numbersToLetter = {
-  0: ['_'],
-  1: ['_'],
+  0: ['0'],
+  1: ['1'],
   2: ['A', 'B', 'C'],
   3: ['D', 'E', 'F'],
   4: ['G', 'H', 'I'],

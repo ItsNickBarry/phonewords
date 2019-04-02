@@ -19,11 +19,11 @@ describe('numbersToWords', function () {
     });
 
     it('parses input number with 0s and 1s', function () {
-      assert.deepStrictEqual(phonewords.numbersToWords(210), ['A__', 'B__', 'C__']);
+      assert.deepStrictEqual(phonewords.numbersToWords(210), ['A10', 'B10', 'C10']);
     });
 
     it('parses input string with spaces and special characters', function () {
-      assert.deepStrictEqual(phonewords.numbersToWords('+1 (201) ...'), ['_A__', '_B__', '_C__']);
+      assert.deepStrictEqual(phonewords.numbersToWords('+1 (201) ...'), ['1A01', '1B01', '1C01']);
     });
 
     it('throws error for a 21-digit input composed of 3-character digits', function () {
@@ -32,6 +32,14 @@ describe('numbersToWords', function () {
 
     it('throws error for a 16-digit input composed of 4-character digits', function () {
       assert.throws(() => phonewords.numbersToWords('7'.repeat(16)));
+    });
+
+    it('is reversible', function () {
+      let number = '1234567890';
+      let words = phonewords.numbersToWords(number);
+      for (var i = 0; i < words.length; i++) {
+        assert.equal(phonewords.wordsToNumbers(words[i]), number);
+      }
     });
   });
 

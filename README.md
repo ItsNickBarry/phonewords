@@ -43,7 +43,7 @@ phonewords.wordsToNumbers('!@#$%^&*()');
 
 Convert a number to an array of possible character combinations with `phonewords.numbersToWords`.
 
-Because `0` and `1` do no correspond to any characters, they are replaced with underscores.
+Because `0` and `1` do no correspond to any characters, they are not replaced.
 
 ```javascript
 phonewords.numbersToWords(2);
@@ -56,10 +56,10 @@ phonewords.numbersToWords(22);
 // => [ 'AA', 'AB', 'AC', 'BA', 'BB', 'BC', 'CA', 'CB', 'CC' ]
 
 phonewords.numbersToWords(210);
-// => [ 'A__', 'B__', 'C__' ]
+// => [ 'A10', 'B10', 'C10' ]
 
 phonewords.numbersToWords('+1 (201) ...');
-// => [ '_A__', '_B__', '_C__' ]
+// => [ '1A01', '1B01', '1C01' ]
 ```
 
 The maximum input length is constrained such that the number of results must not exceed `Math.pow(2, 32) - 1`, the maximum size of an array.  For inputs composed entirely of 3-character digits, this length is `20`.  For inputs composed entirely of 4-character digits, this length is `15`.  Inputs which exceed these constraints will cause the function to throw an error.
