@@ -2,7 +2,7 @@ let isArrayIndex = require('is-array-index');
 
 const MAX_ARRAY_LENGTH = Math.pow(2, 32) - 1;
 
-let lettertoNumbers = {
+let letterToNumber = {
   0: '0',
 
   1: '1',
@@ -50,7 +50,7 @@ let lettertoNumbers = {
   Z: '9',
 };
 
-let numbersToLetter = {
+let numberToLetters = {
   0: ['0'],
   1: ['1'],
   2: ['A', 'B', 'C'],
@@ -86,7 +86,7 @@ let phonewords = {
   numbersToWords: function (n, lazy) {
     let digits = n.toString().replace(/\D/g, '').split('');
 
-    let characters = digits.map(d => numbersToLetter[d]);
+    let characters = digits.map(d => numberToLetters[d]);
 
     let length = characters.reduce((acc, el) => acc * el.length, 1);
 
@@ -142,7 +142,7 @@ let phonewords = {
   wordsToNumbers: function (s) {
     let characters = s.toUpperCase().replace(/\W/g, '').split('');
 
-    return characters.map(c => lettertoNumbers[c]).join('');
+    return characters.map(c => letterToNumber[c]).join('');
   },
 };
 
