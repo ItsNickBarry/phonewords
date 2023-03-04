@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/itsnickbarry/phonewords#readme",
   "devDependencies": {
-    "mocha": "^5.2.0"
+    "mocha": "^10.2.0"
   },
   "dependencies": {
     "is-array-index": "^1.1.0"
